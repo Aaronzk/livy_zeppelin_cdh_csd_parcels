@@ -38,7 +38,7 @@ function build_cm_ext {
   if [ ! -f cm_ext/validator/target/validator.jar ]; then
     cd cm_ext
     git checkout "$CM_EXT_BRANCH"
-    mvn package
+    mvn package -DskipTests
     cd ..
   fi
 }
