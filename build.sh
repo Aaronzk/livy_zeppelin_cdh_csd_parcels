@@ -4,11 +4,9 @@ set -e
 
 CM_EXT_BRANCH=cm5-5.15.0
 LIVY_URL=http://apache.mirror.anlx.net/incubator/livy/0.5.0-incubating/livy-0.5.0-incubating-bin.zip
-LIVY_MD5="cc9dc5518e8c178808707eaa68b7672a"
 LIVY_VERSION=0.5.0
 
 ZEPPELIN_URL=http://apache.mirror.anlx.net/zeppelin/zeppelin-0.8.0/zeppelin-0.8.0-bin-all.tgz
-ZEPPELIN_MD5="d87a285c0640ed02ad74bea219525364"
 ZEPPELIN_VERSION=0.8.0
 
 livy_service_name="LIVY"
@@ -47,11 +45,6 @@ function get_livy {
   if [ ! -f "$livy_archive" ]; then
     wget $LIVY_URL
   fi
-  livy_md5="$( md5sum $livy_archive | cut -d' ' -f1 )"
-  if [ "$livy_md5" != "$LIVY_MD5" ]; then
-    echo ERROR: md5 of $livy_archive is not correct
-    exit 1
-  fi
   if [ ! -d "$livy_folder" ]; then
     unzip $livy_archive
   fi
@@ -60,11 +53,6 @@ function get_livy {
 function get_zeppelin {
   if [ ! -f "$zeppelin_archive" ]; then
     wget $ZEPPELIN_URL
-  fi
-  zeppelin_md5="$( md5sum $zeppelin_archive | cut -d' ' -f1 )"
-  if [ "$zeppelin_md5" != "$ZEPPELIN_MD5" ]; then
-    echo ERROR: md5 of $zeppelin_archive is not correct
-    exit 1
   fi
   if [ ! -d "$zeppelin_folder" ]; then
     tar -xzf $zeppelin_archive
