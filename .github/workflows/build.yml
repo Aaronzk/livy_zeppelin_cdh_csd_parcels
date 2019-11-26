@@ -12,10 +12,10 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Build parcels
-        run: sh build.sh parcel
+        run: bash build.sh parcel
         
       - name: Build csd
-        run: sh build.sh csd
+        run: bash build.sh csd
       
   deploy:
     needs: build
