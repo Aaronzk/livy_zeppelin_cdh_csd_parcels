@@ -8,7 +8,7 @@
     "%SERVICENAMELOWER%"
   ],
 
-  "depends": "CDH",
+  "depends": "CDH 6",
   "replaces": "",
   "conflicts": "",
 
