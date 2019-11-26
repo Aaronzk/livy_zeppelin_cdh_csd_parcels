@@ -98,6 +98,14 @@ function build_zeppelin_parcel {
   python cm_ext/make_manifest/make_manifest.py ./$zeppelin_built_folder
 }
 
+function build_common_parcel {
+  rm -rf ./build
+  mkdir build
+  mv ./$zeppelin_built_folder/$zeppelin_parcel_name ./build/$zeppelin_parcel_name
+  mv ./$livy_built_folder/$livy_parcel_name ./build/$livy_parcel_name
+  python cm_ext/make_manifest/make_manifest.py ./build
+}
+
 function build_livy_csd {
   JARNAME=${livy_service_name}-${LIVY_VERSION}.jar
   if [ -f "$JARNAME" ]; then
@@ -136,6 +144,7 @@ parcel)
   build_cm_ext
   build_livy_parcel
   build_zeppelin_parcel
+  build_common_parcel
   ;;
 csd)
   build_livy_csd
