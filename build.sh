@@ -73,7 +73,7 @@ function build_livy_parcel {
   sed -i -e "s/%SERVICENAMELOWER%/$livy_service_name_lower/" ./$livy_parcel_folder/meta/parcel.json
   java -jar cm_ext/validator/target/validator.jar -d ./$livy_parcel_folder
   mkdir -p $livy_built_folder
-  tar zcvhf ./$livy_built_folder/$livy_parcel_name $livy_parcel_folder --owner=root --group=root
+  tar zcvhf ./$livy_built_folder/$livy_parcel_name $livy_parcel_folder
   java -jar cm_ext/validator/target/validator.jar -f ./$livy_built_folder/$livy_parcel_name
   python cm_ext/make_manifest/make_manifest.py ./$livy_built_folder
 }
@@ -93,7 +93,7 @@ function build_zeppelin_parcel {
   sed -i -e "s/%LIVYSERVICENAME%/$livy_service_name/" ./$zeppelin_parcel_folder/meta/parcel.json
   java -jar cm_ext/validator/target/validator.jar -d ./$zeppelin_parcel_folder
   mkdir -p $zeppelin_built_folder
-  tar zcvhf ./$zeppelin_built_folder/$zeppelin_parcel_name $zeppelin_parcel_folder --owner=root --group=root
+  tar zcvhf ./$zeppelin_built_folder/$zeppelin_parcel_name $zeppelin_parcel_folder
   java -jar cm_ext/validator/target/validator.jar -f ./$zeppelin_built_folder/$zeppelin_parcel_name
   python cm_ext/make_manifest/make_manifest.py ./$zeppelin_built_folder
 }
