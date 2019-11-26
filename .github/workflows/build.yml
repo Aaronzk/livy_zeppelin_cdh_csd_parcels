@@ -36,6 +36,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/manifest.json
           asset_name: manifest.json
+          asset_content_type: application/json
 
       - name: Upload Livy parcel
         uses: actions/upload-release-asset@v1.0.1
@@ -45,6 +46,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/LIVY-0.5.0-bionic.parcel
           asset_name: LIVY-0.5.0-bionic.parcel
+          asset_content_type: application/octet-stream
 
       - name: Upload Livy CSD
         uses: actions/upload-release-asset@v1.0.1
@@ -54,6 +56,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./LIVY-0.5.0.jar
           asset_name: LIVY-0.5.0.jar
+          asset_content_type: application/java-archive
 
       - name: Upload Zeppelin parcel
         uses: actions/upload-release-asset@v1.0.1
@@ -63,6 +66,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/ZEPPELIN-0.8.0-bionic.parcel
           asset_name: ZEPPELIN-0.8.0-bionic.parcel
+          asset_content_type: application/octet-stream
 
       - name: Upload Zeppelin CSD
         uses: actions/upload-release-asset@v1.0.1
@@ -72,4 +76,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./ZEPPELIN-0.8.0.jar
           asset_name: ZEPPELIN-0.8.0.jar
-
+          asset_content_type: application/java-archive
