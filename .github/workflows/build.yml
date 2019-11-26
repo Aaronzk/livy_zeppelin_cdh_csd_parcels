@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Build parcels
+        run: sh build.sh parcel
+        
+      - name: Build csd
+        run: sh build.sh csd
+      
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload Livy
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: LIVY-0.5.0-bionic.parcel
+          path: build/LIVY-0.5.0-bionic.parcel
+
+      - name: Upload Zeppelin
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: ZEPPELIN-0.8.0-bionic.parcel
+          path: build/ZEPPELIN-0.8.0-bionic.parcel
+      
+      - name: Upload manifest
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: manifest.json
+          path: build/manifest.json
