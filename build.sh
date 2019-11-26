@@ -2,7 +2,7 @@
 set -x
 set -e
 
-CM_EXT_BRANCH=cm5-5.12.0
+CM_EXT_BRANCH=cm5-5.15.0
 LIVY_URL=http://apache.mirror.anlx.net/incubator/livy/0.5.0-incubating/livy-0.5.0-incubating-bin.zip
 LIVY_MD5="cc9dc5518e8c178808707eaa68b7672a"
 LIVY_VERSION=0.5.0
