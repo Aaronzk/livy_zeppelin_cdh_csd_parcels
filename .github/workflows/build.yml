@@ -6,7 +6,7 @@ on:
       - v*
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -16,11 +16,7 @@ jobs:
         
       - name: Build csd
         run: bash build.sh csd
-      
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Upload Livy
         uses: actions/upload-artifact@v1.0.0
         with:
