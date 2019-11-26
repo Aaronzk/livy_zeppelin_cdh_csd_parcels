@@ -17,20 +17,59 @@ jobs:
       - name: Build csd
         run: bash build.sh csd
 
-      - name: Upload Livy
-        uses: actions/upload-artifact@v1.0.0
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: LIVY-0.5.0-bionic.parcel
-          path: build/LIVY-0.5.0-bionic.parcel
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
 
-      - name: Upload Zeppelin
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: ZEPPELIN-0.8.0-bionic.parcel
-          path: build/ZEPPELIN-0.8.0-bionic.parcel
-      
       - name: Upload manifest
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: manifest.json
-          path: build/manifest.json
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/manifest.json
+          asset_name: manifest.json
+
+      - name: Upload Livy parcel
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/LIVY-0.5.0-bionic.parcel
+          asset_name: LIVY-0.5.0-bionic.parcel
+
+      - name: Upload Livy CSD
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./LIVY-0.5.0.jar
+          asset_name: LIVY-0.5.0.jar
+
+      - name: Upload Zeppelin parcel
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/ZEPPELIN-0.8.0-bionic.parcel
+          asset_name: ZEPPELIN-0.8.0-bionic.parcel
+
+      - name: Upload Zeppelin CSD
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./ZEPPELIN-0.8.0.jar
+          asset_name: ZEPPELIN-0.8.0.jar
+
