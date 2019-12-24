@@ -239,18 +239,10 @@
           "name": "zeppelin_conf_dir",
           "label": "Zeppelin Conf Directory",
           "description": "The configuration directory where Zeppelin stores the interpreter.json, notebook-authorization.json and credential.json files.",
-          "type": "uri",
+          "type": "path",
+          "pathType": "localDataDir",
           "configName": "zeppelin.config.fs.dir",
-          "allowedSchemes": [
-            "hdfs",
-            "abfs",
-            "adl",
-            "file",
-            "s3a",
-            "wasbs",
-            "wasb"
-          ],
-          "default": "file:///var/local/%SERVICENAMELOWER%/conf",
+          "default": "/var/local/%SERVICENAMELOWER%/conf",
           "required": "true",
           "minLength": 1,
           "configurableInWizard": true
@@ -259,18 +251,10 @@
           "name": "zeppelin_notebook_dir",
           "label": "Zeppelin Notebook Directory",
           "description": "The root data directory where the notebooks are stored.",
+          "type": "path",
+          "pathType": "localDataDir",
           "configName": "zeppelin.notebook.dir",
-          "allowedSchemes": [
-            "hdfs",
-            "abfs",
-            "adl",
-            "file",
-            "s3a",
-            "wasbs",
-            "wasb"
-          ],
-          "default": "file:///var/local/%SERVICENAMELOWER%/data/notebook",
-          "type": "uri",
+          "default": "/var/local/%SERVICENAMELOWER%/data/notebook",
           "required": "true",
           "minLength": 1,
           "configurableInWizard": true
