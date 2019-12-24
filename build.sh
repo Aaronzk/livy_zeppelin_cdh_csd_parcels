@@ -109,7 +109,7 @@ function build_common_parcel {
 function build_livy_csd {
   JARNAME=${livy_service_name}-${LIVY_VERSION}.jar
   if [ -f "$JARNAME" ]; then
-    return
+      rm ./${JARNAME}
   fi
   rm -rf ${livy_csd_build_folder}
   cp -rf ./livy-csd-src ${livy_csd_build_folder}
@@ -124,7 +124,7 @@ function build_livy_csd {
 function build_zeppelin_csd {
   JARNAME=${zeppelin_service_name}-${ZEPPELIN_VERSION}.jar
   if [ -f "$JARNAME" ]; then
-    return
+      rm ./${JARNAME}
   fi
   rm -rf ${zeppelin_csd_build_folder}
   cp -rf ./zeppelin-csd-src ${zeppelin_csd_build_folder}
