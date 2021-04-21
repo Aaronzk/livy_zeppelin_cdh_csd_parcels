@@ -2,7 +2,7 @@
   "name": "%SERVICENAME%",
   "label": "%SERVICENAME%",
   "description": "Apache Zeppelin is a web-based notebook that enables interactive data analytics. You can make beautiful data-driven, interactive and collaborative documents with SQL, Scala and more.",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "compatibility": {
     "cdhVersion": {
       "min": "5.11.0"
